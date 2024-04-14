@@ -1,0 +1,6 @@
+@AnimalsCRUD_cw3_HostAddress = http://localhost:5193
+
+GET {{AnimalsCRUD_cw3_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
