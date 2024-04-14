@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\AnimalsCRUD_cw3.props" />
+</Project>

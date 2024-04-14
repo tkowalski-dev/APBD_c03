@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AnimalsCRUD_cw3")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3fd33ff3e598bd0dd64044cc627f585443e1f6ef")]
 [assembly: System.Reflection.AssemblyProductAttribute("AnimalsCRUD_cw3")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AnimalsCRUD_cw3")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

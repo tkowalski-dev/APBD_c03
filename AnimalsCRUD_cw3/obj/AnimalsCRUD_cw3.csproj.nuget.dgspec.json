@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "Z:\\APBD\\RiderProjects\\AnimalsCRUD_cw3\\AnimalsCRUD_cw3\\AnimalsCRUD_cw3.csproj": {}
+    "C:\\Users\\s18839\\RiderProjects\\AnimalsCRUD_cw3\\AnimalsCRUD_cw3\\AnimalsCRUD_cw3.csproj": {}
   },
   "projects": {
-    "Z:\\APBD\\RiderProjects\\AnimalsCRUD_cw3\\AnimalsCRUD_cw3\\AnimalsCRUD_cw3.csproj": {
+    "C:\\Users\\s18839\\RiderProjects\\AnimalsCRUD_cw3\\AnimalsCRUD_cw3\\AnimalsCRUD_cw3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "Z:\\APBD\\RiderProjects\\AnimalsCRUD_cw3\\AnimalsCRUD_cw3\\AnimalsCRUD_cw3.csproj",
+        "projectUniqueName": "C:\\Users\\s18839\\RiderProjects\\AnimalsCRUD_cw3\\AnimalsCRUD_cw3\\AnimalsCRUD_cw3.csproj",
         "projectName": "AnimalsCRUD_cw3",
-        "projectPath": "Z:\\APBD\\RiderProjects\\AnimalsCRUD_cw3\\AnimalsCRUD_cw3\\AnimalsCRUD_cw3.csproj",
+        "projectPath": "C:\\Users\\s18839\\RiderProjects\\AnimalsCRUD_cw3\\AnimalsCRUD_cw3\\AnimalsCRUD_cw3.csproj",
         "packagesPath": "C:\\Users\\s18839\\.nuget\\packages\\",
-        "outputPath": "Z:\\APBD\\RiderProjects\\AnimalsCRUD_cw3\\AnimalsCRUD_cw3\\obj\\",
+        "outputPath": "C:\\Users\\s18839\\RiderProjects\\AnimalsCRUD_cw3\\AnimalsCRUD_cw3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\s18839\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -52,6 +52,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.6, )"
             }
           },
           "imports": [

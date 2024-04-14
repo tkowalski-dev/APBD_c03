@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\AnimalsCRUD_cw3.props" />
+</Project>
