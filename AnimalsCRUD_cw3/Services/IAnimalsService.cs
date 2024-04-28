@@ -4,9 +4,8 @@ namespace AnimalsCRUD_cw3.Services;
 
 public interface IAnimalsService
 {
-    IEnumerable<Animal> GetAnimals();
-    int CreateAnimal(Animal student);
-    Animal? GetAnimal(int idAnimal);
-    int UpdateAnimal(Animal student);
+    IEnumerable<Animal> GetAnimals(string orderBy);
+    int CreateAnimal(Animal animal);
+    int UpdateAnimal(int idAnimal, Animal animal);
     int DeleteAnimal(int idAnimal);
 }

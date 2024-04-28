@@ -15,8 +15,7 @@ public class Program
         builder.Services.AddScoped<IAnimalsService, AnimalsService>();
 
         var app = builder.Build();
-
-        // Configure the HTTP request pipeline.
+        
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();

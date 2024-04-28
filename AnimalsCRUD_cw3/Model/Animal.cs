@@ -8,7 +8,7 @@ public class Animal
     
     [Required]
     [MaxLength(200)]
-    string Name { get; set; }
+    public string Name { get; set; }
     
     [MaxLength(200)]
     public string Description { get; set; }

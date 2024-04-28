@@ -12,9 +12,15 @@ public class AnimalsService : IAnimalsService
         _animalsRepository = animalsRepository;
     }
     
-    public IEnumerable<Animal> GetAnimals()
+    public IEnumerable<Animal> GetAnimals(string orderBy)
     {
-        return _animalsRepository.GetAnimals();
+        orderBy = orderBy.ToLower();
+        List<string> allowedColumns = new() { "idanimal", "name", "description", "category", "area" };
+        if (!allowedColumns.Contains(orderBy))
+        {
+            throw new ArgumentException($"Order by {orderBy} denied!");
+        }
+        return _animalsRepository.GetAnimals(orderBy);
     }
     
     public int CreateAnimal(Animal animal)
@@ -22,14 +28,9 @@ public class AnimalsService : IAnimalsService
         return _animalsRepository.CreateAnimal(animal);
     }
 
-    public Animal? GetAnimal(int idAnimal)
+    public int UpdateAnimal(int idAnimal, Animal animal)
     {
-        return _animalsRepository.GetAnimal(idAnimal);
-    }
-
-    public int UpdateAnimal(Animal animal)
-    {
-        return _animalsRepository.UpdateAnimal(animal);
+        return _animalsRepository.UpdateAnimal(idAnimal, animal);
     }
 
     public int DeleteAnimal(int idAnimal)

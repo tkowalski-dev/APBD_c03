@@ -13,16 +13,15 @@ public class AnimalsRepository : IAnimalsRepository
         _configuration = configuration;
     }
     
-    public IEnumerable<Animal> GetAnimals()
+    public IEnumerable<Animal> GetAnimals(string orderBy)
     {
-        // using var con = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
-        using var con = new SqlConnection(_configuration["Data Source=db-mssql;Initial Catalog=s18839;Integrated Security=True;Trust Server Certificate=True"]);
+        using var con = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
+        // using var con = new SqlConnection(_configuration["Data Source=db-mssql;Initial Catalog=s18839;Integrated Security=True;Trust Server Certificate=True"]);
         con.Open();
         
         using var cmd = new SqlCommand();
         cmd.Connection = con;
-        // cmd.CommandText = "SELECT * FROM animals;";
-        cmd.CommandText = "SELECT IdStudent, FirstName, LastName, Email, Address, IndexNumber FROM Student ORDER BY LastName, FirstName";
+        cmd.CommandText = $"SELECT * FROM Animals.Animals ORDER BY {orderBy} ASC";
         
         var dr = cmd.ExecuteReader();
         var animals = new List<Animal>();
@@ -30,13 +29,11 @@ public class AnimalsRepository : IAnimalsRepository
         {
             var eAnimal = new Animal
             {
-                // IdStudent = (int)dr["IdStudent"],
-                // FirstName = dr["FirstName"].ToString(),
-                // LastName = dr["LastName"].ToString(),
-                // Email = dr["Email"].ToString(),
-                // Address = dr["Address"].ToString(),
-                // IndexNumber = (int)dr["IndexNumber"]
-                IdAnimal = (int)dr["IdAnimal"]
+                IdAnimal = (int)dr["IdAnimal"],
+                Name = dr["Name"].ToString(),
+                Description = dr["Description"].ToString(),
+                Category = dr["Category"].ToString(),
+                Area = dr["Area"].ToString()
             };
             animals.Add(eAnimal);
         }
@@ -46,21 +43,52 @@ public class AnimalsRepository : IAnimalsRepository
 
     public int CreateAnimal(Animal animal)
     {
-        throw new NotImplementedException();
+        using var con = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
+        con.Open();
+
+        using var cmd = new SqlCommand();
+        cmd.Connection = con;
+        cmd.CommandText = "insert into Animals.Animals(IdAnimal, Name, Description, Category, Area) values (@IdAnimal, @Name, @Description, @Category, @Area)";
+        cmd.Parameters.AddWithValue("@IdAnimal", animal.IdAnimal);
+        cmd.Parameters.AddWithValue("@Name", animal.Name);
+        cmd.Parameters.AddWithValue("@Description", animal.Description);
+        cmd.Parameters.AddWithValue("@Category", animal.Category);
+        cmd.Parameters.AddWithValue("@Area", animal.Area);
+
+        var affRows = cmd.ExecuteNonQuery();
+        return affRows;
     }
 
-    public Animal GetAnimal(int idAnimal)
+    public int UpdateAnimal(int idAnimal, Animal animal)
     {
-        throw new NotImplementedException();
-    }
-
-    public int UpdateAnimal(Animal animal)
-    {
-        throw new NotImplementedException();
+        using var con = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
+        con.Open();
+        
+        using var cmd = new SqlCommand();
+        cmd.Connection = con;
+        cmd.CommandText = "UPDATE Animals.Animals SET IdAnimal=@IdAnimal, Name=@Name, Description=@Description, Category=@Category, Area=@Area WHERE IdAnimal = @CurrentId";
+        cmd.Parameters.AddWithValue("@IdAnimal", animal.IdAnimal);
+        cmd.Parameters.AddWithValue("@Name", animal.Name);
+        cmd.Parameters.AddWithValue("@Description", animal.Description);
+        cmd.Parameters.AddWithValue("@Category", animal.Category);
+        cmd.Parameters.AddWithValue("@Area", animal.Area);
+        cmd.Parameters.AddWithValue("@CurrentId", idAnimal);
+        
+        var affectedCount = cmd.ExecuteNonQuery();
+        return affectedCount;
     }
 
     public int DeleteAnimal(int idAnimal)
     {
-        throw new NotImplementedException();
+        using var con = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
+        con.Open();
+        
+        using var cmd = new SqlCommand();
+        cmd.Connection = con;
+        cmd.CommandText = "DELETE FROM Animals.Animals WHERE IdAnimal = @IdAnimal";
+        cmd.Parameters.AddWithValue("@IdAnimal", idAnimal);
+        
+        var affectedCount = cmd.ExecuteNonQuery();
+        return affectedCount;
     }
 }

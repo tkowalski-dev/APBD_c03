@@ -20,28 +20,10 @@ public class AnimalsController : ControllerBase
     /// </summary>
     /// <returns>List of animals</returns>
     [HttpGet]
-    public IActionResult GetAnimals()
+    public IActionResult GetAnimals(string orderBy = "name")
     {
-        var animals = _animalsService.GetAnimals();
+        var animals = _animalsService.GetAnimals(orderBy);
         return Ok(animals);
-    }
-    
-    /// <summary>
-    /// Endpoint used to return a single animal.
-    /// </summary>
-    /// <param name="id">Id of a animal</param>
-    /// <returns>Animal</returns>
-    [HttpGet("{id:int}")]
-    public IActionResult GetAnimal(int id)
-    {
-        var animal = _animalsService.GetAnimal(id);
-
-        if (animal==null)
-        {
-            return NotFound("Animal not found");
-        }
-        
-        return Ok(animal);
     }
     
     /// <summary>
@@ -65,20 +47,20 @@ public class AnimalsController : ControllerBase
     [HttpPut("{id:int}")]
     public IActionResult UpdateAnimal(int id, Animal animal)
     {
-        var affectedCount = _animalsService.UpdateAnimal(animal);
-        return NoContent();
+        var affectedCount = _animalsService.UpdateAnimal(id, animal);
+        return affectedCount > 0 ? NoContent() : NotFound();
     }
     
     /// <summary>
     /// Endpoint used to delete a animal.
     /// </summary>
     /// <param name="id">Id of a animal</param>
-    /// <returns>204 No Content</returns>
+    /// <returns>204 No Content or 404 Not Found</returns>
     [HttpDelete("{id:int}")]
     public IActionResult DeleteAnimal(int id)
     {
         var affectedCount = _animalsService.DeleteAnimal(id);
-        return NoContent();
+        return affectedCount > 0 ? NoContent() : NotFound();
     }
 }
 
