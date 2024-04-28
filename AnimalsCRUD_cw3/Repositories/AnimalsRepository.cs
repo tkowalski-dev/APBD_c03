@@ -15,18 +15,20 @@ public class AnimalsRepository : IAnimalsRepository
     
     public IEnumerable<Animal> GetAnimals()
     {
-        using var con = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
+        // using var con = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
+        using var con = new SqlConnection(_configuration["Data Source=db-mssql;Initial Catalog=s18839;Integrated Security=True;Trust Server Certificate=True"]);
         con.Open();
         
         using var cmd = new SqlCommand();
         cmd.Connection = con;
-        cmd.CommandText = "SELECT * FROM animals;";
+        // cmd.CommandText = "SELECT * FROM animals;";
+        cmd.CommandText = "SELECT IdStudent, FirstName, LastName, Email, Address, IndexNumber FROM Student ORDER BY LastName, FirstName";
         
         var dr = cmd.ExecuteReader();
         var animals = new List<Animal>();
         while (dr.Read())
         {
-            var grade = new Animal
+            var eAnimal = new Animal
             {
                 // IdStudent = (int)dr["IdStudent"],
                 // FirstName = dr["FirstName"].ToString(),
@@ -34,8 +36,9 @@ public class AnimalsRepository : IAnimalsRepository
                 // Email = dr["Email"].ToString(),
                 // Address = dr["Address"].ToString(),
                 // IndexNumber = (int)dr["IndexNumber"]
+                IdAnimal = (int)dr["IdAnimal"]
             };
-            animals.Add(grade);
+            animals.Add(eAnimal);
         }
         
         return animals;
